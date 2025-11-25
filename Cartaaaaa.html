@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi princesita 💗</title>
+<style>
+body {
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #ffc1e3, #ff9ad5);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+}
+#mensaje {
+    font-size: 22px;
+    color: white;
+    margin-top: 40px;
+    padding: 20px;
+}
+button {
+    margin: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#si { background: #ff7bf2; color:white; }
+#si:hover { transform: scale(1.1) rotate(2deg); }
+#no { background: #ddd; color:#333; position: relative; }
+#respuesta { display:none; font-size:20px; color:white; margin-top:20px; }
+.heart {
+    position: absolute;
+    color: #ff2e6e;
+    font-size: 20px;
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Música -->
+<audio autoplay loop>
+    <source src="innocence.mp3" type="audio/mpeg">
+</audio>
+
+<div id="mensaje">
+Se que no soy perfecto y sé que a veces perdés la paciencia por mí,<br>
+pero yo te amo mucho y no vivo sin vos 💗<br><br>
+¿Querés darme otra oportunidad mi princesita hermosa? 💗💗💗
+</div>
+
+<button id="si" onclick="explosion()">💗 SÍ 💗</button>
+<button id="no" onmouseover="escapar()">NO 😢</button>
+
+<div id="respuesta">
+Te amo mucho mi rubia hermosa 💗 Nunca voy a dejar de amarte 💗<br>
+Recordá que yo te amo de aquí a la luna a pasitos de tortuga 👣🌙🐢💗
+</div>
+
+<script>
+function escapar() {
+    const no = document.getElementById("no");
+    no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    no.style.top = Math.random() * (window.innerHeight - 50) + "px";
+}
+
+// Explosión de corazones al presionar "SÍ"
+function explosion() {
+    const respuesta = document.getElementById("respuesta");
+    respuesta.style.display = "block";
+
+    for(let i=0; i<30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💗";
+        heart.style.left = window.innerWidth/2 + "px";
+        heart.style.top = window.innerHeight/2 + "px";
+
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 100 + Math.random()*150;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+
+        heart.style.transition = "all 1s ease-out";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.style.left = (window.innerWidth/2 + dx) + "px";
+            heart.style.top = (window.innerHeight/2 + dy) + "px";
+            heart.style.opacity = 0;
+        }, 10);
+
+        setTimeout(() => heart.remove(), 1100);
+    }
+}
+</script>
+
+</body>
+</html>
